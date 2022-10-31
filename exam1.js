@@ -4,8 +4,6 @@
  * nhập vào 3 số nguyên
  * PROCESS:
  * có 3 số a b và c;
- * Trường hợp nhập vào thiếu dữ liệu:
- *  báo lỗi
  * xét trường hợp 3 số bằng nhau:
  *  nếu a == b và b == c
  *  thì trả ra 3 số bằng nhau
@@ -32,83 +30,94 @@
  *        nếu điều kiện b > a && b > c sai thì chỉ có c là số lớn nhất, max = c
  *        so sánh a với b, số nào nhỏ hơn thì là min, số còn lại là middle
  * OUTPUT:
- * 
+ *
  * xuất ra 3 số theo thứ tự tăng dần: min - middle - max
  */
-var num1 = 6;
-var num2 = 5;
-var num3 = 7;
-var max;
-var middle;
-var min;
-// Trường hợp 3 số bằng nhau
-if (num1 == num2 && num2 == num3) {
-  max = num1;
-  min = num1;
-  middle = num1;
-  console.log("Ba số nhập vào bằng nhau");
-}
-// Trường hợp có 2 số bằng nhau
-if (num1 == num2 || num1 == num3 || num2 == num3) {
-  if (num1 == num2) {
-    if (num1 < num3) {
+function findMaxNumber() {
+  var num1 = document.getElementById("numberOne").value * 1;
+  var num2 = document.getElementById("numberTwo").value * 1;
+  var num3 = document.getElementById("numberThree").value * 1;
+  var max;
+  var middle;
+  var min;
+  // Trường hợp 3 số bằng nhau
+  if (num1 == num2 && num2 == num3) {
+    max = num1;
+    min = num1;
+    middle = num1;
+    document.getElementById("exam1Result").innerHTML =
+      "Ba số nhập vào bằng nhau";
+  }
+  // Trường hợp có 2 số bằng nhau
+  else if (num1 == num2 || num1 == num3 || num2 == num3) {
+    if (num1 == num2) {
+      if (num1 < num3) {
+        max = num3;
+        min = num1;
+        middle = min;
+      } else {
+        min = num3;
+        max = num1;
+        middle = max;
+      }
+    } else if (num1 == num3) {
+      if (num1 < num2) {
+        max = num2;
+        min = num1;
+        middle = min;
+      } else {
+        min = num2;
+        max = num1;
+        middle = max;
+      }
+    } else {
+      if (num2 < num1) {
+        max = num1;
+        min = num2;
+        middle = min;
+      } else {
+        min = num1;
+        max = num2;
+        middle = max;
+      }
+    }
+    document.getElementById("exam1Result").innerHTML =
+       min + " " + middle + " " + max + ", có 2 số bằng nhau";
+  }
+  // Trường hợp không có số nào bằng nhau
+  else if (num1 != num2 && num2 != num3 && num1 != num3) {
+    if (num1 > num2 && num1 > num3) {
+      max = num1;
+      if (num2 > num3) {
+        min = num3;
+        middle = num2;
+      } else {
+        min = num2;
+        middle = num3;
+      }
+    } else if (num2 > num1 && num2 > num3) {
+      max = num2;
+      if (num1 > num3) {
+        min = num3;
+        middle = num1;
+      } else {
+        min = num1;
+        middle = num3;
+      }
+    } else if (num3 > num1 && num3 > num2) {
       max = num3;
-      min = num1;
-      middle = min;
-    } else {
-      min = num3;
-      max = num1;
-      middle = max;
+      if (num2 > num1) {
+        middle = num2;
+        min = num1;
+      } else {
+        middle = num1;
+        min = num2;
+      }
     }
-  } else if (num1 == num3) {
-    if (num1 < num2) {
-      max = num2;
-      min = num1;
-      middle = min;
-    } else {
-      min = num2;
-      max = num1;
-      middle = max;
-    }
-  } else {
-    if (num2 < num1) {
-      max = num1;
-      min = num2;
-      middle = min;
-    } else {
-      min = num1;
-      max = num2;
-      middle = max;
-    }
+    document.getElementById("exam1Result").innerHTML =
+      "thứ tự tăng dần:" + " " + min + " " + middle + " " + max;
   }
+  document.getElementById("exam1Result").style.backgroundColor =
+    "rgba(154, 245, 144, 0.24)";
 }
-// Trường hợp không có số nào bằng nhau
-if (num1 > num2 && num1 > num3) {
-  max = num1;
-  if (num2 > num3) {
-    min = num3;
-    middle = num2;
-  } else {
-    min = num2;
-    middle = num3;
-  }
-} else if (num2 > num1 && num2 > num3) {
-  max = num2;
-  if (num1 > num3) {
-    min = num3;
-    middle = num1;
-  } else {
-    min = num1;
-    middle = num3;
-  }
-} else if (num3 > num1 && num3 > num2) {
-  max = num3;
-  if (num2 > num1) {
-    middle = num2;
-    min = num1;
-  } else {
-    middle = num1;
-    min = num2;
-  }
-}
-console.log(min, middle, max);
+// console.log(min, middle, max);

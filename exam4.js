@@ -23,47 +23,50 @@
  * Xuất ra loại tam giác
  * Nếu không thỏa mãn điều kiện là tam giác thì báo lỗi
  */
-var edge1 = 3;
-var edge2 = 4;
-var edge3 = 5.5;
-// var isTriAngle;
-if (edge1 + edge2 > edge3 && edge1 + edge3 > edge2 && edge2 + edge3 > edge1) {
-  isTriAngle = true;
-} else {
-  isTriAngle = false;
-  console.log(
-    "Đây không thể là hình tam giác, vui lòng nhập lại độ dài các cạnh"
-  );
-}
-if (isTriAngle == true) {
-    // Kiểm tra tam giác đều
-  if (edge1 == edge2 && edge1 == edge3 && edge2 == edge3) {
-    console.log("Là tam giác đều");
-    // Kiểm tra tam giác cân
-  } else if (edge1 == edge2 || edge1 == edge3) {
-    console.log("Là tam giác cân");
-    // Kiểm tra phải là tam giác vuông hay không
+function handleTriangle() {
+  var edge1 = document.getElementById("edge1").value * 1;
+  var edge2 = document.getElementById("edge2").value * 1;
+  var edge3 = document.getElementById("edge3").value * 1;
+  var result = document.getElementById("exam4Result");
+  if (edge1 + edge2 > edge3 && edge1 + edge3 > edge2 && edge2 + edge3 > edge1) {
+    isTriAngle = true;
   } else {
-    var max;
-    var a;
-    var b;
-    if (edge1 > edge2 && edge1 > edge3) {
-      max = edge1;
-      a = edge2;
-      b = edge3;
-    } else if (edge2 > edge1 && edge2 > edge3) {
-      max = edge2;
-      a = edge1;
-      b = edge3;
+    isTriAngle = false;
+    result.innerHTML =
+      "Đây không thể là hình tam giác, vui lòng nhập lại độ dài các cạnh";
+  }
+  if (isTriAngle == true) {
+    // Kiểm tra tam giác đều
+    if (edge1 == edge2 && edge1 == edge3 && edge2 == edge3) {
+      result.innerHTML = "Đây là tam giác đều";
+      // Kiểm tra tam giác cân
+    } else if (edge1 == edge2 || edge1 == edge3) {
+      result.innerHTML = "Đây là tam giác cân";
+      // Kiểm tra phải là tam giác vuông hay không
     } else {
-      max = edge3;
-      a = edge1;
-      b = edge2;
-    }
-    if (max ** 2 == a ** 2 + b ** 2) {
-      console.log("Đây là tam giác vuông");
-    } else {
-      console.log("Đây là một tam giác bình thường không có gì nổi bật");
+      var max;
+      var a;
+      var b;
+      if (edge1 > edge2 && edge1 > edge3) {
+        max = edge1;
+        a = edge2;
+        b = edge3;
+      } else if (edge2 > edge1 && edge2 > edge3) {
+        max = edge2;
+        a = edge1;
+        b = edge3;
+      } else {
+        max = edge3;
+        a = edge1;
+        b = edge2;
+      }
+      if (max ** 2 == a ** 2 + b ** 2) {
+        result.innerHTML = "Đây là tam giác vuông";
+      } else {
+        result.innerHTML =
+          "Đây là một tam giác bình thường không có gì nổi bật";
+      }
     }
   }
+  result.style.backgroundColor = "rgba(154, 245, 144, 0.24)";
 }
